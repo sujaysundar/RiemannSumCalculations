@@ -1,0 +1,21 @@
+%syms x
+%rsums(x^2, 0, 10)
+syms x;
+xMax =4
+numRectangles =33
+c =3.5
+f(x) = c*x^2;
+yMax = double(f(xMax));
+fplot(f);
+xlim([0 xMax]); ylim([0 yMax]);
+legend({}, 'Location', 'north', 'FontSize', 20);
+title('Riemann Sum', 'FontSize', 20);
+width = xMax/numRectangles;
+sum = 0;
+for i = 0:numRectangles-1
+  xval = i*width;
+  height = double(f(xval));
+  rectangle('Position', [xval 0 width height], 'EdgeColor', 'r');
+  sum = sum + width*height;
+end
+text(xMax/10, yMax/3, ['Area =' num2str(sum)], 'FontSize', 20);
